@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Profile Creation for Web Developers - Lecture 29</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0077b5 0%, #00a0dc 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .lecture-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-left: 5px solid #0077b5;
+            margin: 20px;
+        }
+
+        .lecture-info h3 {
+            color: #0077b5;
+            margin-bottom: 10px;
+        }
+
+        nav {
+            background: #2c3e50;
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: #34495e;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        section {
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #eee;
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        h2 {
+            color: #0077b5;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #0077b5;
+        }
+
+        h3 {
+            color: #333;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+        }
+
+        h4 {
+            color: #555;
+            font-size: 1.2em;
+            margin: 20px 0 10px 0;
+        }
+
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .highlight-box {
+            background: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 5px solid #ff9800;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .success-box {
+            background: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .tip {
+            background: #f1f8e9;
+            border-left: 5px solid #8bc34a;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .tip strong {
+            color: #689f38;
+        }
+
+        .example {
+            background: #fafafa;
+            border: 2px solid #ddd;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .example h4 {
+            color: #0077b5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin-top: 0;
+        }
+
+        .checklist {
+            background: white;
+            border: 2px solid #0077b5;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .checklist-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.5);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: #0077b5;
+            color: white;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .good {
+            color: #4caf50;
+            font-weight: bold;
+        }
+
+        .bad {
+            color: #f44336;
+            font-weight: bold;
+        }
+
+        .activity {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 10px;
+        }
+
+        .activity h3 {
+            color: white;
+            border-bottom: 2px solid white;
+            padding-bottom: 10px;
+        }
+
+        .activity ul {
+            margin-top: 15px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin: 30px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #0077b5;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -17px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #0077b5;
+            border: 4px solid white;
+        }
+
+        .timeline-item h4 {
+            margin-top: 0;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #0077b5;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin: 10px 5px;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #005885;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .card {
+            background: white;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .card h4 {
+            color: #0077b5;
+            margin-top: 0;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .code-snippet {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        .code-snippet code {
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📱 LinkedIn Profile Creation for Web Developers</h1>
+            <p>Building Your Professional Digital Identity</p>
+            <p><strong>Lecture 29 | Duration: 3 Hours | Practical Workshop</strong></p>
+        </header>
+
+        <div class="lecture-info">
+            <h3>📋 Workshop Objectives</h3>
+            <ul>
+                <li>Create and optimize a professional LinkedIn profile</li>
+                <li>Showcase web development projects effectively</li>
+                <li>Integrate GitHub portfolio with LinkedIn</li>
+                <li>Build a strong professional network</li>
+                <li>Learn LinkedIn best practices for developers</li>
+            </ul>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#profile-setup">Profile Setup</a></li>
+                <li><a href="#showcasing">Showcasing Projects</a></li>
+                <li><a href="#github">GitHub Integration</a></li>
+                <li><a href="#networking">Networking</a></li>
+                <li><a href="#activities">Activities</a></li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <!-- SECTION 1: INTRODUCTION -->
+            <section id="intro">
+                <h2>1. Why LinkedIn Matters for Web Developers</h2>
+                
+                <div class="highlight-box">
+                    <h3>📊 Key Statistics</h3>
+                    <ul>
+                        <li><strong>900+ million</strong> professionals on LinkedIn worldwide</li>
+                        <li><strong>87%</strong> of recruiters use LinkedIn to find candidates</li>
+                        <li><strong>70%</strong> of people were hired at companies where they had a connection</li>
+                        <li><strong>6 people</strong> are hired every minute through LinkedIn</li>
+                    </ul>
+                </div>
+
+                <h3>Benefits for Web Developers</h3>
+                <div class="grid">
+                    <div class="card">
+                        <h4>🎯 Job Opportunities</h4>
+                        <p>Recruiters actively search for developers with specific skills. A well-optimized profile increases visibility.</p>
+                    </div>
+                    <div class="card">
+                        <h4>💼 Portfolio Showcase</h4>
+                        <p>Display your projects, GitHub repositories, and technical achievements in one professional space.</p>
+                    </div>
+                    <div class="card">
+                        <h4>🌐 Professional Network</h4>
+                        <p>Connect with fellow developers, mentors, and industry leaders in the tech community.</p>
+                    </div>
+                    <div class="card">
+                        <h4>📚 Learning & Growth</h4>
+                        <p>Stay updated with industry trends, participate in discussions, and learn from peers.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 2: PROFILE SETUP -->
+            <section id="profile-setup">
+                <h2>2. Creating Your LinkedIn Profile - Step by Step</h2>
+
+                <h3>2.1 Profile Photo & Banner</h3>
+                
+                <div class="tip">
+                    <strong>💡 Pro Tip:</strong> Your profile photo is the first impression. Profiles with photos receive 21x more profile views and 9x more connection requests!
+                </div>
+
+                <h4>Profile Photo Guidelines:</h4>
+                <ul>
+                    <li>✅ Use a professional headshot with good lighting</li>
+                    <li>✅ Face should take up 60% of the frame</li>
+                    <li>✅ Smile and look approachable</li>
+                    <li>✅ Use a plain or simple background</li>
+                    <li>❌ Avoid selfies, group photos, or casual pictures</li>
+                    <li>❌ No sunglasses or filters</li>
+                    <li>Recommended size: 400 x 400 pixels (max 8MB)</li>
+                </ul>
+
+                <h4>Banner Image Ideas:</h4>
+                <ul>
+                    <li>Code snippet from your project</li>
+                    <li>Tech stack logos you work with</li>
+                    <li>Professional design showcasing your work</li>
+                    <li>Recommended size: 1584 x 396 pixels</li>
+                </ul>
+
+                <h3>2.2 Headline - Your Professional Tagline</h3>
+                
+                <div class="warning-box">
+                    <strong>⚠️ Common Mistake:</strong> Don't just write "Student" or "Web Developer". Use this space to stand out!
+                </div>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>❌ Weak Headline</th>
+                            <th>✅ Strong Headline</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="bad">Web Developer</td>
+                            <td class="good">Full Stack Web Developer | MERN Stack | Building Scalable Web Applications</td>
+                        </tr>
+                        <tr>
+                            <td class="bad">Student at XYZ College</td>
+                            <td class="good">Computer Science Student | Frontend Developer | React & JavaScript Enthusiast</td>
+                        </tr>
+                        <tr>
+                            <td class="bad">Looking for opportunities</td>
+                            <td class="good">Junior Web Developer | HTML, CSS, JavaScript | Open to Frontend Development Roles</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="example">
+                    <h4>Formula for Great Headlines:</h4>
+                    <p><strong>[Your Role] | [Key Skills/Technologies] | [Value Proposition/Interest]</strong></p>
+                    <br>
+                    <p><strong>Examples:</strong></p>
+                    <ul>
+                        <li>"Frontend Developer | React, Vue.js, TypeScript | Creating Exceptional User Experiences"</li>
+                        <li>"Full Stack Developer | Node.js, MongoDB, React | Passionate About Clean Code"</li>
+                        <li>"Web Developer | JavaScript, Python, AWS | Building Modern Web Solutions"</li>
+                    </ul>
+                </div>
+
+                <h3>2.3 About Section - Your Story</h3>
+                
+                <p>The About section is your elevator pitch. You have up to 2,600 characters to tell your professional story.</p>
+
+                <div class="highlight-box">
+                    <h4>Structure Your About Section:</h4>
+                    <ol>
+                        <li><strong>Opening Hook</strong> - Who are you? (1-2 sentences)</li>
+                        <li><strong>Your Journey</strong> - How did you get here? (2-3 sentences)</li>
+                        <li><strong>Skills & Expertise</strong> - What can you do? (3-4 sentences)</li>
+                        <li><strong>Projects & Achievements</strong> - What have you built? (2-3 sentences)</li>
+                        <li><strong>Interests & Goals</strong> - What drives you? (2-3 sentences)</li>
+                        <li><strong>Call to Action</strong> - How can people reach you? (1 sentence)</li>
+                    </ol>
+                </div>
+
+                <div class="example">
+                    <h4>Sample About Section for Web Developer:</h4>
+                    <p style="line-height: 1.8;">
+                        <strong>Opening:</strong> I'm a passionate web developer who loves turning creative ideas into functional, user-friendly websites and applications.<br><br>
+                        
+                        <strong>Journey:</strong> My coding journey began two years ago when I built my first website using HTML and CSS. Since then, I've immersed myself in modern web technologies, constantly learning and building projects that challenge me to grow.<br><br>
+                        
+                        <strong>Skills:</strong> I specialize in the MERN stack (MongoDB, Express.js, React, Node.js) and have hands-on experience with JavaScript, TypeScript, Tailwind CSS, and Git. I'm comfortable with both frontend and backend development, focusing on creating responsive, accessible, and performant web applications.<br><br>
+                        
+                        <strong>Projects:</strong> I've developed several projects including an e-commerce platform with payment integration, a real-time chat application, and a portfolio website for a local business. Each project has taught me valuable lessons about problem-solving, code optimization, and user experience design.<br><br>
+                        
+                        <strong>Interests:</strong> I'm particularly interested in modern web frameworks, performance optimization, and web accessibility. I contribute to open-source projects and regularly share my learning journey through technical blogs.<br><br>
+                        
+                        <strong>Call to Action:</strong> I'm always excited to connect with fellow developers, discuss new technologies, or explore collaboration opportunities. Feel free to reach out!
+                    </p>
+                </div>
+
+                <h3>2.4 Experience Section</h3>
+
+                <div class="tip">
+                    <strong>💡 For Students:</strong> Include internships, freelance work, personal projects, open-source contributions, and even significant academic projects!
+                </div>
+
+                <h4>How to List Projects as Experience:</h4>
+                <div class="checklist">
+                    <div class="checklist-item">
+                        <input type="checkbox" id="exp1">
+                        <label for="exp1">Use action verbs (Developed, Built, Implemented, Created, Designed)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="exp2">
+                        <label for="exp2">Quantify achievements when possible (Users served, Performance improved by X%)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="exp3">
+                        <label for="exp3">List technologies and tools used</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="exp4">
+                        <label for="exp4">Describe the problem you solved</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="exp5">
+                        <label for="exp5">Include links to live projects or GitHub repos</label>
+                    </div>
+                </div>
+
+                <div class="example">
+                    <h4>Example Experience Entry:</h4>
+                    <p><strong>Full Stack Developer (Personal Project)</strong><br>
+                    E-Commerce Platform | Jan 2024 - Mar 2024</p>
+                    <ul>
+                        <li>Developed a fully functional e-commerce website using React, Node.js, Express, and MongoDB</li>
+                        <li>Implemented secure user authentication with JWT and password encryption</li>
+                        <li>Integrated Stripe payment gateway for seamless checkout experience</li>
+                        <li>Built RESTful APIs to handle product catalog, cart, and order management</li>
+                        <li>Achieved 95+ Lighthouse performance score through optimization techniques</li>
+                        <li><strong>Tech Stack:</strong> React, Node.js, Express, MongoDB, Stripe API, Tailwind CSS</li>
+                    </ul>
+                </div>
+
+                <h3>2.5 Skills & Endorsements</h3>
+
+                <p>Add up to 50 skills, but prioritize the top 3-5 that you want to be known for.</p>
+
+                <div class="grid">
+                    <div class="card">
+                        <h4>🎨 Frontend Skills</h4>
+                        <ul>
+                            <li>HTML5 & CSS3</li>
+                            <li>JavaScript (ES6+)</li>
+                            <li>React / Vue / Angular</li>
+                            <li>TypeScript</li>
+                            <li>Responsive Design</li>
+                            <li>Tailwind CSS / Bootstrap</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>⚙️ Backend Skills</h4>
+                        <ul>
+                            <li>Node.js</li>
+                            <li>Express.js</li>
+                            <li>RESTful APIs</li>
+                            <li>MongoDB / MySQL</li>
+                            <li>Authentication & Security</li>
+                            <li>Python / Django</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>🛠️ Tools & Other</h4>
+                        <ul>
+                            <li>Git & GitHub</li>
+                            <li>VS Code</li>
+                            <li>npm / yarn</li>
+                            <li>Webpack / Vite</li>
+                            <li>Postman</li>
+                            <li>Figma</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>2.6 Education Section</h3>
+                <ul>
+                    <li>List your degree, institution, and graduation year</li>
+                    <li>Include relevant coursework (Web Development, Data Structures, Database Systems)</li>
+                    <li>Add GPA if it's strong (above 3.5)</li>
+                    <li>Mention academic achievements, projects, or leadership roles</li>
+                </ul>
+
+                <h3>2.7 Certifications & Courses</h3>
+                <div class="success-box">
+                    <strong>✅ Popular Certifications for Web Developers:</strong>
+                    <ul>
+                        <li>Meta Front-End Developer Certificate</li>
+                        <li>Google UX Design Certificate</li>
+                        <li>AWS Certified Developer</li>
+                        <li>FreeCodeCamp Certifications</li>
+                        <li>Udemy / Coursera Courses</li>
+                    </ul>
+                </div>
+
+                <h3>2.8 Custom LinkedIn URL</h3>
+                <div class="tip">
+                    <strong>💡 Pro Tip:</strong> Customize your LinkedIn URL to make it professional and easy to share!<br>
+                    Instead of: linkedin.com/in/john-doe-123456789<br>
+                    Use: linkedin.com/in/johndoe-webdev
+                </div>
+            </section>
+
+            <!-- SECTION 3: SHOWCASING PROJECTS -->
+            <section id="showcasing">
+                <h2>3. Showcasing Your Web Development Projects</h2>
+
+                <h3>3.1 Featured Section</h3>
+                <p>The Featured section appears right below your About section and is perfect for showcasing your best work.</p>
+
+                <h4>What to Feature:</h4>
+                <div class="grid">
+                    <div class="card">
+                        <h4>🌐 Live Projects</h4>
+                        <p>Links to deployed websites or web applications you've built</p>
+                    </div>
+                    <div class="card">
+                        <h4>💻 GitHub Repositories</h4>
+                        <p>Your best open-source projects or code samples</p>
+                    </div>
+                    <div class="card">
+                        <h4>📝 Technical Articles</h4>
+                        <p>Blog posts or tutorials you've written</p>
+                    </div>
+                    <div class="card">
+                        <h4>🎥 Demo Videos</h4>
+                        <p>Video demonstrations of your projects</p>
+                    </div>
+                </div>
+
+                <h3>3.2 Project Presentation Best Practices</h3>
+
+                <div class="checklist">
+                    <div class="checklist-item">
+                        <input type="checkbox" id="proj1">
+                        <label for="proj1">Use eye-catching thumbnail images or screenshots</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="proj2">
+                        <label for="proj2">Write compelling titles that describe the project</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="proj3">
+                        <label for="proj3">Include brief descriptions explaining the problem solved</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="proj4">
+                        <label for="proj4">Mention technologies used (React, Node.js, MongoDB, etc.)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="proj5">
+                        <label for="proj5">Ensure all links work and projects are accessible</label>
+                    </div>
+                </div>
+
+                <h3>3.3 Project Description Template</h3>
+
+                <div class="example">
+                    <h4>Template Format:</h4>
+                    <p style="line-height: 1.8;">
+                        <strong>[Project Name]</strong><br><br>
+                        
+                        <strong>Problem:</strong> [What problem does this solve?]<br><br>
+                        
+                        <strong>Solution:</strong> [Brief description of your solution]<br><br>
+                        
+                        <strong>Key Features:</strong><br>
+                        • Feature 1<br>
+                        • Feature 2<br>
+                        • Feature 3<br><br>
+                        
+                        <strong>Tech Stack:</strong> [List technologies]<br><br>
+                        
+                        <strong>Impact/Results:</strong> [Quantifiable results if applicable]<br><br>
+                        
+                        <strong>Links:</strong> 🌐 Live Demo | 💻 GitHub
+                    </p>
+                </div>
+
+                <div class="example">
+                    <h4>Real Example:</h4>
+                    <p style="line-height: 1.8;">
+                        <strong>TaskMaster - Project Management Dashboard</strong><br><br>
+                        
+                        <strong>Problem:</strong> Small teams needed a simple yet powerful tool to manage projects without the complexity of enterprise solutions.<br><br>
+                        
+                        <strong>Solution:</strong> Built a responsive project management dashboard with real-time updates and intuitive task tracking.<br><br>
+                        
+                        <strong>Key Features:</strong><br>
+                        • Drag-and-drop Kanban board for task management<br>
+                        • Real-time collaboration using WebSockets<br>
+                        • User authentication and role-based access control<br>
+                        • Team analytics and progress visualization<br><br>
+                        
+                        <strong>Tech Stack:</strong> React, Node.js, Express, MongoDB, Socket.io, Chart.js, Tailwind CSS<br><br>
+                        
+                        <strong>Impact:</strong> Used by 3 local startups, managing 50+ projects and 200+ tasks monthly<br><br>
+                        
+                        🌐 <a href="#">Live Demo</a> | 💻 <a href="#">GitHub Repository</a>
+                    </p>
+                </div>
+
+                <h3>3.4 Portfolio Website</h3>
+
+                <div class="highlight-box">
+                    <h4>Why You Need a Portfolio Website:</h4>
+                    <ul>
+                        <li>Showcase all your projects in one place</li>
+                        <li>Demonstrate your design and development skills</li>
+                        <li>Improve your personal branding</li>
+                        <li>Easy to share with recruiters and clients</li>
+                    </ul>
+                    <p><strong>Include the link to your portfolio in:</strong></p>
+                    <ul>
+                        <li>LinkedIn headline</li>
+                        <li>Contact info section</li>
+                        <li>Featured section</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- SECTION 4: GITHUB INTEGRATION -->
+            <section id="github">
+                <h2>4. Integrating GitHub with LinkedIn</h2>
+
+                <h3>4.1 Why GitHub Matters</h3>
+                
+                <div class="highlight-box">
+                    <p>Your GitHub profile is your <strong>code portfolio</strong>. Recruiters and hiring managers often check GitHub to:</p>
+                    <ul>
+                        <li>See your coding style and quality</li>
+                        <li>Evaluate your consistency and commitment</li>
+                        <li>Review your contribution to open-source</li>
+                        <li>Understand your technical skills</li>
+                    </ul>
+                </div>
+
+                <h3>4.2 Optimizing Your GitHub Profile</h3>
+
+                <div class="checklist">
+                    <h4>GitHub Profile Checklist:</h4>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="gh1">
+                        <label for="gh1">Professional profile picture (same as LinkedIn for consistency)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="gh2">
+                        <label for="gh2">Detailed bio with your skills and interests</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="gh3">
+                        <label for="gh3">Link to your LinkedIn profile and portfolio website</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="gh4">
+                        <label for="gh4">Custom README.md for your profile (GitHub Profile README)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="gh5">
+                        <label for="gh5">Pin your 6 best repositories</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="gh6">
+                        <label for="gh6">Detailed README files for each repository</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="gh7">
+                        <label for="gh7">Clear commit messages</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="gh8">
+                        <label for="gh8">Consistent green contribution graph</label>
+                    </div>
+                </div>
+
+                <h3>4.3 Perfect Repository README Template</h3>
+
+                <div class="code-snippet">
+                    <code># Project Name
+
+## 📝 Description
+Brief description of what the project does and who it's for.
+
+## ✨ Features
+- Feature 1
+- Feature 2
+- Feature 3
+
+## 🛠️ Technologies Used
+- React
+- Node.js
+- MongoDB
+- Express
+
+## 🚀 Installation
+
+```bash
+git clone https://github.com/yourusername/project-name.git
+cd project-name
+npm install
+npm start
+```
+
+## 📸 Screenshots
+![Screenshot](link-to-screenshot)
+
+## 🌐 Live Demo
+[View Live Demo](link-to-demo)
+
+## 🤝 Contributing
+Pull requests are welcome!
+
+## 📄 License
+MIT License
+
+## 👤 Author
+Your Name
+- LinkedIn: [Your Profile](link)
+- Portfolio: [Your Website](link)</code>
+                </div>
+
+                <h3>4.4 Linking GitHub to LinkedIn</h3>
+
+                <h4>Method 1: Add to Contact Info</h4>
+                <ol>
+                    <li>Go to your LinkedIn profile</li>
+                    <li>Click "Contact Info"</li>
+                    <li>Add your GitHub profile URL</li>
+                </ol>
+
+                <h4>Method 2: Add to Featured Section</h4>
+                <ol>
+                    <li>Click "Add profile section"</li>
+                    <li>Select "Featured"</li>
+                    <li>Choose "Add link"</li>
+                    <li>Paste your GitHub repository URLs</li>
+                    <li>Add descriptions for each repository</li>
+                </ol>
+
+                <h4>Method 3: Mention in About Section</h4>
+                <div class="example">
+                    <p>"Check out my GitHub profile where I share my web development projects and contribute to open-source: github.com/yourusername"</p>
+                </div>
+
+                <h3>4.5 Contributing to Open Source</h3>
+
+                <div class="success-box">
+                    <h4>Benefits of Open Source Contributions:</h4>
+                    <ul>
+                        <li>✅ Demonstrates collaboration skills</li>
+                        <li>✅ Shows initiative and passion</li>
+                        <li>✅ Builds your network</li>
+                        <li>✅ Improves your code quality</li>
+                        <li>✅ Looks impressive on LinkedIn and GitHub</li>
+                    </ul>
+                </div>
+
+                <h4>How to Start Contributing:</h4>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>1. Find Projects</h4>
+                        <p>Look for repositories with "good first issue" or "beginner-friendly" labels on GitHub</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>2. Understand the Code</h4>
+                        <p>Read the documentation and understand how the project works</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>3. Start Small</h4>
+                        <p>Fix bugs, improve documentation, or add small features</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>4. Submit Pull Requests</h4>
+                        <p>Follow contribution guidelines and write clear descriptions</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>5. Share on LinkedIn</h4>
+                        <p>Post about your contributions and what you learned</p>
+                    </div>
+                </div>
+
+                <div class="tip">
+                    <strong>💡 Pro Tip:</strong> Create a post on LinkedIn every time you make a significant open-source contribution. This shows your active involvement in the developer community!
+                </div>
+            </section>
+
+            <!-- SECTION 5: NETWORKING -->
+            <section id="networking">
+                <h2>5. Networking Strategies for Web Developers</h2>
+
+                <h3>5.1 Building Your Network</h3>
+
+                <div class="highlight-box">
+                    <h4>Who to Connect With:</h4>
+                    <ul>
+                        <li><strong>Fellow Developers:</strong> Classmates, bootcamp peers, online community members</li>
+                        <li><strong>Industry Professionals:</strong> Senior developers, tech leads, CTOs</li>
+                        <li><strong>Recruiters:</strong> Tech recruiters specializing in web development</li>
+                        <li><strong>Alumni:</strong> Graduates from your institution working in tech</li>
+                        <li><strong>Thought Leaders:</strong> Tech influencers, bloggers, conference speakers</li>
+                        <li><strong>Company Employees:</strong> People working at companies you're interested in</li>
+                    </ul>
+                </div>
+
+                <h3>5.2 Connection Request Best Practices</h3>
+
+                <div class="warning-box">
+                    <strong>⚠️ Never send connection requests without a personalized note!</strong>
+                </div>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>❌ Bad Connection Request</th>
+                            <th>✅ Good Connection Request</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="bad">(No message - just default request)</td>
+                            <td class="good">Hi [Name], I came across your profile while researching React developers. I'm currently learning React and would love to connect and learn from your experience!</td>
+                        </tr>
+                        <tr>
+                            <td class="bad">Hi, please accept my connection request.</td>
+                            <td class="good">Hi [Name], I saw your recent post about web performance optimization. As a fellow web developer working on similar challenges, I'd love to connect and exchange ideas!</td>
+                        </tr>
+                        <tr>
+                            <td class="bad">I need a job. Can you help me?</td>
+                            <td class="good">Hi [Name], I'm a web developer passionate about frontend development. I noticed you work at [Company] and would value the opportunity to connect and learn more about your work there.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="example">
+                    <h4>Connection Request Template:</h4>
+                    <p style="line-height: 1.8;">
+                        Hi [Name],<br><br>
+                        
+                        [How you found them / Common ground]<br><br>
+                        
+                        [Why you want to connect / Compliment their work]<br><br>
+                        
+                        [Call to action - simple and friendly]<br><br>
+                        
+                        Best regards,<br>
+                        [Your Name]
+                    </p>
+                </div>
+
+                <h3>5.3 Engaging with Your Network</h3>
+
+                <h4>Regular Activities to Stay Visible:</h4>
+                <div class="grid">
+                    <div class="card">
+                        <h4>📱 Share Content</h4>
+                        <ul>
+                            <li>Your project updates</li>
+                            <li>Learning milestones</li>
+                            <li>Technical articles</li>
+                            <li>Industry news</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>💬 Engage with Posts</h4>
+                        <ul>
+                            <li>Like relevant posts</li>
+                            <li>Leave thoughtful comments</li>
+                            <li>Share others' content</li>
+                            <li>Tag relevant people</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>✍️ Write Articles</h4>
+                        <ul>
+                            <li>Technical tutorials</li>
+                            <li>Problem-solving stories</li>
+                            <li>Career lessons</li>
+                            <li>Tool reviews</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>🎯 Participate in Groups</h4>
+                        <ul>
+                            <li>Join developer groups</li>
+                            <li>Answer questions</li>
+                            <li>Share resources</li>
+                            <li>Network with members</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>5.4 Content Ideas for Web Developers</h3>
+
+                <div class="checklist">
+                    <h4>Post Ideas to Share:</h4>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="content1">
+                        <label for="content1">"Just completed a [technology] course/certification!"</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="content2">
+                        <label for="content2">"Built my first [type of project] - here's what I learned"</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="content3">
+                        <label for="content3">"5 JavaScript tips that improved my code quality"</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="content4">
+                        <label for="content4">"How I solved [specific problem] in my project"</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="content5">
+                        <label for="content5">"My journey from [beginner to current level]"</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="content6">
+                        <label for="content6">"Contributed to my first open-source project!"</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="content7">
+                        <label for="content7">"Resources that helped me learn [technology]"</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="content8">
+                        <label for="content8">"Attended [tech event/webinar] - key takeaways"</label>
+                    </div>
+                </div>
+
+                <h3>5.5 LinkedIn Groups for Web Developers</h3>
+
+                <div class="grid">
+                    <div class="card">
+                        <h4>Recommended Groups</h4>
+                        <ul>
+                            <li>Web Development</li>
+                            <li>JavaScript Developers</li>
+                            <li>React Developers Community</li>
+                            <li>Full Stack Developers</li>
+                            <li>Frontend Developers</li>
+                            <li>Node.js Developers</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>How to Use Groups</h4>
+                        <ul>
+                            <li>Ask questions when stuck</li>
+                            <li>Share helpful resources</li>
+                            <li>Answer others' questions</li>
+                            <li>Network with members</li>
+                            <li>Stay updated on trends</li>
+                            <li>Find job opportunities</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>5.6 Informational Interviews</h3>
+
+                <div class="success-box">
+                    <h4>What is an Informational Interview?</h4>
+                    <p>A casual conversation with someone in your field to learn about their career path, company, or industry insights. It's networking, not job hunting!</p>
+                </div>
+
+                <h4>How to Request an Informational Interview:</h4>
+                <div class="example">
+                    <p style="line-height: 1.8;">
+                        Hi [Name],<br><br>
+                        
+                        I hope this message finds you well! I'm a web development student at [Your Institution], and I came across your profile while researching careers in [specific area].<br><br>
+                        
+                        I'm really impressed by your work at [Company] and your expertise in [specific technology]. I would love to learn more about your journey into web development and get your insights on the industry.<br><br>
+                        
+                        Would you be open to a brief 15-20 minute virtual coffee chat sometime in the next couple of weeks? I'm flexible with timing and happy to work around your schedule.<br><br>
+                        
+                        Thank you for considering my request!<br><br>
+                        
+                        Best regards,<br>
+                        [Your Name]
+                    </p>
+                </div>
+
+                <h4>Questions to Ask During Informational Interviews:</h4>
+                <ul>
+                    <li>How did you get started in web development?</li>
+                    <li>What does a typical day look like in your role?</li>
+                    <li>What technologies should I focus on learning?</li>
+                    <li>What advice would you give to someone starting their career?</li>
+                    <li>What do you enjoy most about your work?</li>
+                    <li>What challenges do you face as a developer?</li>
+                    <li>How important is contributing to open source?</li>
+                    <li>Any tips for building a strong portfolio?</li>
+                </ul>
+
+                <div class="tip">
+                    <strong>💡 Follow-Up is Key:</strong> Always send a thank-you message after the interview and keep them updated on your progress!
+                </div>
+            </section>
+
+            <!-- SECTION 6: PRACTICAL ACTIVITIES -->
+            <section id="activities">
+                <h2>6. Practical Workshop Activities</h2>
+
+                <div class="activity">
+                    <h3>🎯 Activity 1: Profile Creation (45 minutes)</h3>
+                    <h4>Tasks:</h4>
+                    <ul>
+                        <li>Create or optimize your LinkedIn profile</li>
+                        <li>Add a professional photo and banner</li>
+                        <li>Write a compelling headline using the formula provided</li>
+                        <li>Draft your About section following the structure</li>
+                        <li>Add at least 3 project experiences</li>
+                        <li>List your top 10 skills</li>
+                        <li>Customize your LinkedIn URL</li>
+                    </ul>
+                </div>
+
+                <div class="activity">
+                    <h3>💻 Activity 2: GitHub Integration (30 minutes)</h3>
+                    <h4>Tasks:</h4>
+                    <ul>
+                        <li>Optimize your GitHub profile with bio and links</li>
+                        <li>Create a GitHub Profile README</li>
+                        <li>Write detailed README files for 3 repositories</li>
+                        <li>Pin your 6 best repositories</li>
+                        <li>Link your GitHub profile to LinkedIn</li>
+                        <li>Add 2 repositories to Featured section on LinkedIn</li>
+                    </ul>
+                </div>
+
+                <div class="activity">
+                    <h3>🤝 Activity 3: Networking Practice (30 minutes)</h3>
+                    <h4>Tasks:</h4>
+                    <ul>
+                        <li>Connect with 5 fellow students with personalized messages</li>
+                        <li>Connect with 3 developers in your field of interest</li>
+                        <li>Join 3 relevant LinkedIn groups</li>
+                        <li>Write and post your first LinkedIn update about a project or learning</li>
+                        <li>Engage with 5 posts (like and comment)</li>
+                    </ul>
+                </div>
+
+                <div class="activity">
+                    <h3>📝 Activity 4: Content Creation (30 minutes)</h3>
+                    <h4>Tasks:</h4>
+                    <ul>
+                        <li>Write a short post about your web development journey</li>
+                        <li>Share a project with screenshots and description</li>
+                        <li>Write about something new you learned recently</li>
+                        <li>Share a helpful resource or tutorial</li>
+                    </ul>
+                </div>
+
+                <div class="activity">
+                    <h3>🔍 Activity 5: Profile Review & Peer Feedback (45 minutes)</h3>
+                    <h4>Tasks:</h4>
+                    <ul>
+                        <li>Pair up with a classmate</li>
+                        <li>Review each other's profiles</li>
+                        <li>Provide constructive feedback using the checklist</li>
+                        <li>Suggest improvements</li>
+                        <li>Exchange connections</li>
+                    </ul>
+                </div>
+
+                <h3>📋 Profile Completion Checklist</h3>
+                <div class="checklist">
+                    <div class="checklist-item">
+                        <input type="checkbox" id="final1">
+                        <label for="final1">Professional profile photo uploaded</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="final2">
+                        <label for="final2">Custom banner image added</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="final3">
+                        <label for="final3">Compelling headline with skills and value proposition</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="final4">
+                        <label for="final4">Detailed About section (300+ words)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="final5">
+                        <label for="final5">At least 3 project experiences added</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="final6">
+                        <label for="final6">Education section completed</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="final7">
+                        <label for="final7">Top 10 skills added</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="final8">
+                        <label for="final8">Featured section with projects/GitHub repos</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="final9">
+                        <label for="final9">GitHub profile linked</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="final10">
+                        <label for="final10">Portfolio website linked (if available)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="final11">
+                        <label for="final11">Custom LinkedIn URL set</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="final12">
+                        <label for="final12">Contact information updated</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="final13">
+                        <label for="final13">At least 10 connections made</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="final14">
+                        <label for="final14">Joined 3+ relevant groups</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="final15">
+                        <label for="final15">First LinkedIn post published</label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BONUS TIPS SECTION -->
+            <section id="bonus">
+                <h2>7. Bonus Tips & Common Mistakes to Avoid</h2>
+
+                <h3>✅ Do's</h3>
+                <div class="success-box">
+                    <ul>
+                        <li>✅ Keep your profile updated regularly</li>
+                        <li>✅ Be authentic and genuine in your interactions</li>
+                        <li>✅ Engage with content consistently (3-5 times per week)</li>
+                        <li>✅ Showcase your learning journey, not just achievements</li>
+                        <li>✅ Respond to messages within 24-48 hours</li>
+                        <li>✅ Celebrate others' achievements</li>
+                        <li>✅ Use keywords relevant to web development for better searchability</li>
+                        <li>✅ Turn on "Open to Work" feature when job hunting</li>
+                    </ul>
+                </div>
+
+                <h3>❌ Don'ts</h3>
+                <div class="warning-box">
+                    <ul>
+                        <li>❌ Don't spam people with connection requests</li>
+                        <li>❌ Don't immediately ask for jobs after connecting</li>
+                        <li>❌ Don't copy-paste generic connection messages</li>
+                        <li>❌ Don't lie or exaggerate your skills/experience</li>
+                        <li>❌ Don't be overly promotional or salesy</li>
+                        <li>❌ Don't engage in controversial or political debates</li>
+                        <li>❌ Don't use unprofessional language or emojis excessively</li>
+                        <li>❌ Don't neglect your profile after initial setup</li>
+                    </ul>
+                </div>
+
+                <h3>🚀 Advanced Tips for Standing Out</h3>
+                <div class="grid">
+                    <div class="card">
+                        <h4>1. Create Video Content</h4>
+                        <p>Record short coding tutorials or project walkthroughs. Video content gets 5x more engagement!</p>
+                    </div>
+                    <div class="card">
+                        <h4>2. Publish Articles</h4>
+                        <p>Write detailed technical articles using LinkedIn's publishing platform. Shows thought leadership.</p>
+                    </div>
+                    <div class="card">
+                        <h4>3. Get Recommendations</h4>
+                        <p>Ask professors, mentors, or colleagues to write recommendations. Adds credibility!</p>
+                    </div>
+                    <div class="card">
+                        <h4>4. Showcase Certifications</h4>
+                        <p>Display badges and certificates prominently. Shows continuous learning!</p>
+                    </div>
+                </div>
+
+                <h3>📈 Measuring Success</h3>
+                <div class="highlight-box">
+                    <h4>Track These Metrics:</h4>
+                    <ul>
+                        <li><strong>Profile Views:</strong> Aim for steady growth (check weekly)</li>
+                        <li><strong>Search Appearances:</strong> How often you appear in searches</li>
+                        <li><strong>Post Engagement:</strong> Likes, comments, shares on your content</li>
+                        <li><strong>Connection Growth:</strong> Quality over quantity</li>
+                        <li><strong>Message Response Rate:</strong> How quickly you engage</li>
+                    </ul>
+                    <p><em>Access analytics through the "Me" dropdown → "Access My Premium"</em></p>
+                </div>
+            </section>
+
+            <!-- RESOURCES SECTION -->
+            <section id="resources">
+                <h2>8. Additional Resources</h2>
+
+                <div class="grid">
+                    <div class="card">
+                        <h4>📚 Learning Platforms</h4>
+                        <ul>
+                            <li>freeCodeCamp</li>
+                            <li>Codecademy</li>
+                            <li>Udemy</li>
+                            <li>Coursera</li>
+                            <li>The Odin Project</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>💻 Code Practice</h4>
+                        <ul>
+                            <li>LeetCode</li>
+                            <li>HackerRank</li>
+                            <li>Codewars</li>
+                            <li>Frontend Mentor</li>
+                            <li>DevChallenges</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>🌐 Developer Communities</h4>
+                        <ul>
+                            <li>Dev.to</li>
+                            <li>Stack Overflow</li>
+                            <li>GitHub Discussions</li>
+                            <li>Reddit r/webdev</li>
+                            <li>Discord servers</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>📰 Tech News & Blogs</h4>
+                        <ul>
+                            <li>CSS-Tricks</li>
+                            <li>Smashing Magazine</li>
+                            <li>web.dev</li>
+                            <li>MDN Web Docs</li>
+                            <li>JavaScript Weekly</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>🔗 Useful Links</h3>
+                <ul>
+                    <li><strong>LinkedIn Help:</strong> LinkedIn Learning, Help Center</li>
+                    <li><strong>GitHub Guides:</strong> GitHub Skills, GitHub Docs</li>
+                    <li><strong>Portfolio Inspiration:</strong> Browse developer portfolios on Awwwards, Dribbble</li>
+                    <li><strong>Resume/CV Templates:</strong> Canva, Resume.io for tech resumes</li>
+                </ul>
+            </section>
+
+            <!-- SUMMARY -->
+            <section id="summary">
+                <h2>📌 Key Takeaways</h2>
+
+                <div class="highlight-box">
+                    <h3>Remember These Points:</h3>
+                    <ol>
+                        <li><strong>Optimize Your Profile:</strong> Complete profile = 40x more opportunities</li>
+                        <li><strong>Showcase Projects:</strong> Your work speaks louder than your degree</li>
+                        <li><strong>Integrate GitHub:</strong> Let your code demonstrate your skills</li>
+                        <li><strong>Network Actively:</strong> Connections = Opportunities</li>
+                        <li><strong>Stay Consistent:</strong> Regular engagement builds visibility</li>
+                        <li><strong>Be Authentic:</strong> Real connections matter more than numbers</li>
+                        <li><strong>Keep Learning:</strong> Share your growth journey</li>
+                        <li><strong>Give Value:</strong> Help others, share knowledge, contribute</li>
+                    </ol>
+                </div>
+
+                <div class="success-box">
+                    <h3>🎯 30-Day LinkedIn Challenge</h3>
+                    <p><strong>Week 1:</strong> Complete profile optimization</p>
+                    <p><strong>Week 2:</strong> Connect with 20+ people, join 5 groups</p>
+                    <p><strong>Week 3:</strong> Post 3 times, engage daily with others' content</p>
+                    <p><strong>Week 4:</strong> Publish an article, reach out for 2 informational interviews</p>
+                </div>
+            </section>
+        </div>
+
+        <footer>
+            <h2>🎓 Workshop Complete!</h2>
+            <p>Your LinkedIn profile is your digital handshake with the world.</p>
+            <p>Make it count, stay authentic, and keep building!</p>
+            <br>
+            <p><strong>Questions? Need Help?</strong></p>
+            <p>Feel free to reach out during office hours or via email</p>
+            <br>
+            <p style="font-size: 0.9em; opacity: 0.8;">
+                <em>Last Updated: February 2026 | Lecture 29: LinkedIn Profile Creation for Web Developers</em>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // Save checklist state to localStorage
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(checkbox => {
+            const savedState = localStorage.getItem(checkbox.id);
+            if (savedState === 'true') {
+                checkbox.checked = true;
+            }
+
+            checkbox.addEventListener('change', function() {
+                localStorage.setItem(this.id, this.checked);
+            });
+        });
+
+        // Print progress percentage
+        function updateProgress() {
+            const total = checkboxes.length;
+            const checked = document.querySelectorAll('input[type="checkbox"]:checked').length;
+            const percentage = Math.round((checked / total) * 100);
+            console.log(`Profile Completion: ${percentage}%`);
+        }
+
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', updateProgress);
+        });
+    </script>
+</body>
+</html>
