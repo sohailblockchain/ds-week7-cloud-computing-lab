@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Science & Engineering Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a24;
+            --accent-cyan: #00d4ff;
+            --accent-purple: #a855f7;
+            --accent-pink: #f472b6;
+            --accent-green: #22c55e;
+            --accent-orange: #fb923c;
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --glow-cyan: 0 0 60px rgba(0, 212, 255, 0.3);
+            --glow-purple: 0 0 60px rgba(168, 85, 247, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse 80% 50% at 20% -20%, rgba(0, 212, 255, 0.15), transparent),
+                radial-gradient(ellipse 60% 40% at 80% 100%, rgba(168, 85, 247, 0.12), transparent),
+                radial-gradient(ellipse 50% 30% at 50% 50%, rgba(244, 114, 182, 0.05), transparent);
+        }
+
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-cyan);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 4rem 4rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--accent-cyan);
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent-cyan);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .hero h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease-out 0.3s backwards;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple), var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            animation: fadeInUp 1s ease-out 0.5s backwards;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            color: var(--bg-primary);
+            box-shadow: var(--glow-cyan);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 80px rgba(0, 212, 255, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--accent-cyan);
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: flex;
+            gap: 3rem;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            animation: fadeInUp 1s ease-out 0.6s backwards;
+        }
+
+        .stat {
+            text-align: left;
+        }
+
+        .stat-number {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 4rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Skills Section */
+        #skills {
+            background: var(--bg-secondary);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--card-accent), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--card-accent);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .skill-card:hover::before {
+            opacity: 1;
+        }
+
+        .skill-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-card h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .skill-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            padding: 0.4rem 0.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Week-specific colors */
+        .skill-card[data-week="1"] { --card-accent: var(--accent-cyan); }
+        .skill-card[data-week="2"] { --card-accent: var(--accent-purple); }
+        .skill-card[data-week="3"] { --card-accent: var(--accent-pink); }
+        .skill-card[data-week="4"] { --card-accent: var(--accent-green); }
+        .skill-card[data-week="5"] { --card-accent: var(--accent-orange); }
+        .skill-card[data-week="6"] { --card-accent: #f43f5e; }
+        .skill-card[data-week="7"] { --card-accent: #06b6d4; }
+
+        .skill-card[data-week="1"] .skill-icon { background: rgba(0, 212, 255, 0.15); color: var(--accent-cyan); }
+        .skill-card[data-week="2"] .skill-icon { background: rgba(168, 85, 247, 0.15); color: var(--accent-purple); }
+        .skill-card[data-week="3"] .skill-icon { background: rgba(244, 114, 182, 0.15); color: var(--accent-pink); }
+        .skill-card[data-week="4"] .skill-icon { background: rgba(34, 197, 94, 0.15); color: var(--accent-green); }
+        .skill-card[data-week="5"] .skill-icon { background: rgba(251, 146, 60, 0.15); color: var(--accent-orange); }
+        .skill-card[data-week="6"] .skill-icon { background: rgba(244, 63, 94, 0.15); color: #f43f5e; }
+        .skill-card[data-week="7"] .skill-icon { background: rgba(6, 182, 212, 0.15); color: #06b6d4; }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        .project-image {
+            height: 220px;
+            background: linear-gradient(135deg, var(--project-color-1), var(--project-color-2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+        }
+
+        .project-card:nth-child(1) { --project-color-1: #0d9488; --project-color-2: #06b6d4; }
+        .project-card:nth-child(2) { --project-color-1: #7c3aed; --project-color-2: #a855f7; }
+        .project-card:nth-child(3) { --project-color-1: #db2777; --project-color-2: #f472b6; }
+        .project-card:nth-child(4) { --project-color-1: #ea580c; --project-color-2: #fb923c; }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-week {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-card h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .project-tech span {
+            padding: 0.4rem 0.8rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 6px;
+            font-size: 0.8rem;
+            color: var(--accent-cyan);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Timeline Section */
+        #curriculum {
+            background: var(--bg-secondary);
+        }
+
+        .timeline {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent-cyan), var(--accent-purple), var(--accent-pink));
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 45%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            border-color: var(--accent-cyan);
+            transform: scale(1.02);
+        }
+
+        .timeline-week {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--bg-primary);
+            border: 3px solid var(--accent-cyan);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        /* Tools Section */
+        .tools-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tools-category {
+            margin-bottom: 3rem;
+        }
+
+        .tools-category h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-cyan);
+        }
+
+        .tools-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .tool-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .tool-item:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .tool-icon {
+            font-size: 1.5rem;
+        }
+
+        .tool-item span {
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(to bottom, var(--bg-primary), var(--bg-secondary));
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            background: var(--accent-cyan);
+            color: var(--bg-primary);
+            transform: translateY(-5px);
+            box-shadow: var(--glow-cyan);
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 4rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer span {
+            color: var(--accent-cyan);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 6rem 1.5rem 3rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .stats-bar {
+                flex-wrap: wrap;
+                gap: 1.5rem;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .skills-grid, .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item, .timeline-item:nth-child(odd) {
+                flex-direction: row;
+                padding-left: 50px;
+            }
+
+            .timeline-content {
+                width: 100%;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-pattern"></div>
+    <div class="grid-overlay"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">DS.Portfolio</div>
+        <ul class="nav-links">
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#curriculum">Curriculum</a></li>
+            <li><a href="#tools">Tools</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                Available for opportunities
+            </div>
+            <h1>
+                Data Science &<br>
+                <span>Engineering Portfolio</span>
+            </h1>
+            <p class="hero-description">
+                Transforming raw data into actionable insights through machine learning, 
+                statistical analysis, and cloud computing. Building end-to-end data solutions 
+                from Python fundamentals to production ML systems.
+            </p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+            </div>
+            <div class="stats-bar">
+                <div class="stat">
+                    <div class="stat-number">7+</div>
+                    <div class="stat-label">Weeks of Training</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">35</div>
+                    <div class="stat-label">Sessions Completed</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Major Projects</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Tools Mastered</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="section-header">
+            <div class="section-tag">// Expertise</div>
+            <h2 class="section-title">Skills & Competencies</h2>
+            <p class="section-subtitle">Comprehensive training across the full data science stack, from Python basics to advanced machine learning and cloud deployment.</p>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-card fade-in" data-week="1">
+                <div class="skill-icon">🐍</div>
+                <h3>Python Foundations</h3>
+                <p>Core programming skills including data structures, control flow, functions, and data wrangling fundamentals.</p>
+                <div class="skill-tags">
+                    <span class="skill-tag">Variables</span>
+                    <span class="skill-tag">Lists</span>
+                    <span class="skill-tag">Dictionaries</span>
+                    <span class="skill-tag">Functions</span>
+                    <span class="skill-tag">Loops</span>
+                </div>
+            </div>
+            <div class="skill-card fade-in" data-week="2">
+                <div class="skill-icon">🐼</div>
+                <h3>Data Analysis with Pandas</h3>
+                <p>Expert data manipulation using Pandas for cleaning, filtering, aggregation, and exploratory data analysis.</p>
+                <div class="skill-tags">
+                    <span class="skill-tag">DataFrames</span>
+                    <span class="skill-tag">GroupBy</span>
+                    <span class="skill-tag">Pivot Tables</span>
+                    <span class="skill-tag">CSV/Excel</span>
+                </div>
+            </div>
+            <div class="skill-card fade-in" data-week="3">
+                <div class="skill-icon">📊</div>
+                <h3>Data Visualization</h3>
+                <p>Creating compelling visual stories with statistical plots, custom aesthetics, and dashboard design.</p>
+                <div class="skill-tags">
+                    <span class="skill-tag">Matplotlib</span>
+                    <span class="skill-tag">Seaborn</span>
+                    <span class="skill-tag">Box Plots</span>
+                    <span class="skill-tag">Heatmaps</span>
+                </div>
+            </div>
+            <div class="skill-card fade-in" data-week="4">
+                <div class="skill-icon">📈</div>
+                <h3>Statistics & ML Foundations</h3>
+                <p>Inferential statistics, hypothesis testing, correlation analysis, and introduction to machine learning concepts.</p>
+                <div class="skill-tags">
+                    <span class="skill-tag">Hypothesis Testing</span>
+                    <span class="skill-tag">Regression</span>
+                    <span class="skill-tag">Correlation</span>
+                    <span class="skill-tag">CLT</span>
+                </div>
+            </div>
+            <div class="skill-card fade-in" data-week="5">
+                <div class="skill-icon">🤖</div>
+                <h3>Machine Learning</h3>
+                <p>Building and evaluating classification models with Scikit-learn, feature engineering, and model selection.</p>
+                <div class="skill-tags">
+                    <span class="skill-tag">Logistic Regression</span>
+                    <span class="skill-tag">KNN</span>
+                    <span class="skill-tag">Random Forest</span>
+                    <span class="skill-tag">F1-Score</span>
+                </div>
+            </div>
+            <div class="skill-card fade-in" data-week="6">
+                <div class="skill-icon">🎯</div>
+                <h3>Advanced ML & Clustering</h3>
+                <p>Unsupervised learning, dimensionality reduction, hyperparameter tuning, and model optimization.</p>
+                <div class="skill-tags">
+                    <span class="skill-tag">K-Means</span>
+                    <span class="skill-tag">PCA</span>
+                    <span class="skill-tag">GridSearchCV</span>
+                    <span class="skill-tag">Cross-Validation</span>
+                </div>
+            </div>
+            <div class="skill-card fade-in" data-week="7">
+                <div class="skill-icon">☁️</div>
+                <h3>Big Data & Cloud</h3>
+                <p>Distributed computing concepts and cloud platforms for scalable data science workflows.</p>
+                <div class="skill-tags">
+                    <span class="skill-tag">Hadoop</span>
+                    <span class="skill-tag">Spark</span>
+                    <span class="skill-tag">AWS SageMaker</span>
+                    <span class="skill-tag">Google Colab</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="section-header">
+            <div class="section-tag">// Portfolio</div>
+            <h2 class="section-title">Featured Projects</h2>
+            <p class="section-subtitle">Hands-on projects demonstrating practical application of data science concepts from data wrangling to machine learning deployment.</p>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card fade-in">
+                <div class="project-image">📁</div>
+                <div class="project-content">
+                    <div class="project-week">Week 1 Project</div>
+                    <h3>Data Wrangling with Python</h3>
+                    <p>Cleaned and manipulated a messy sales dataset using Python fundamentals, demonstrating proficiency in data structures and control flow.</p>
+                    <div class="project-tech">
+                        <span>Python</span>
+                        <span>Data Cleaning</span>
+                        <span>Functions</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card fade-in">
+                <div class="project-image">🔍</div>
+                <div class="project-content">
+                    <div class="project-week">Week 2 Project</div>
+                    <h3>Exploratory Data Analysis</h3>
+                    <p>Comprehensive EDA on Titanic/Iris datasets using Pandas, uncovering patterns and insights through systematic data exploration.</p>
+                    <div class="project-tech">
+                        <span>Pandas</span>
+                        <span>EDA</span>
+                        <span>Data Profiling</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card fade-in">
+                <div class="project-image">📉</div>
+                <div class="project-content">
+                    <div class="project-week">Week 3 Project</div>
+                    <h3>Data Storytelling Dashboard</h3>
+                    <p>Created an interactive dashboard notebook combining visualizations and statistics to tell a compelling story from data.</p>
+                    <div class="project-tech">
+                        <span>Matplotlib</span>
+                        <span>Seaborn</span>
+                        <span>Statistics</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card fade-in">
+                <div class="project-image">🏠</div>
+                <div class="project-content">
+                    <div class="project-week">Week 4 Project</div>
+                    <h3>Statistical Analysis & Regression</h3>
+                    <p>Performed hypothesis testing and built a linear regression model to predict housing prices from real-world data.</p>
+                    <div class="project-tech">
+                        <span>Scikit-learn</span>
+                        <span>Regression</span>
+                        <span>Hypothesis Testing</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card fade-in">
+                <div class="project-image">📞</div>
+                <div class="project-content">
+                    <div class="project-week">Week 5 Project</div>
+                    <h3>Customer Churn Classifier</h3>
+                    <p>Built a best-in-class classification model to predict customer churn, comparing multiple algorithms and evaluation metrics.</p>
+                    <div class="project-tech">
+                        <span>Random Forest</span>
+                        <span>Logistic Regression</span>
+                        <span>ROC-AUC</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card fade-in">
+                <div class="project-image">👥</div>
+                <div class="project-content">
+                    <div class="project-week">Week 6 Project</div>
+                    <h3>Customer Segmentation</h3>
+                    <p>End-to-end unsupervised learning project using K-Means clustering to identify distinct customer groups for targeted marketing.</p>
+                    <div class="project-tech">
+                        <span>K-Means</span>
+                        <span>PCA</span>
+                        <span>Clustering</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Curriculum Timeline -->
+    <section id="curriculum">
+        <div class="section-header">
+            <div class="section-tag">// Learning Path</div>
+            <h2 class="section-title">Curriculum Journey</h2>
+            <p class="section-subtitle">A structured 7-week intensive program covering the complete data science lifecycle.</p>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-week">Week 1</div>
+                    <h3>Python Foundation for Data Science</h3>
+                    <p>Environment setup, Python syntax, data structures, functions, and data wrangling basics.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-week">Week 2</div>
+                    <h3>Data Analysis with Pandas</h3>
+                    <p>DataFrames, data manipulation, aggregation, GroupBy operations, and EDA techniques.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-week">Week 3</div>
+                    <h3>Data Visualization & Statistics</h3>
+                    <p>Matplotlib, Seaborn, statistical visualizations, descriptive statistics, and data storytelling.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-week">Week 4</div>
+                    <h3>Inferential Statistics & ML Intro</h3>
+                    <p>Hypothesis testing, correlation, linear regression, and supervised vs unsupervised learning.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-week">Week 5</div>
+                    <h3>Machine Learning with Scikit-learn</h3>
+                    <p>Classification models, preprocessing, feature engineering, and model evaluation metrics.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-week">Week 6</div>
+                    <h3>Advanced ML & Unsupervised Learning</h3>
+                    <p>Hyperparameter tuning, K-Means clustering, PCA, and model optimization techniques.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-week">Week 7</div>
+                    <h3>Big Data, Cloud & Final Project</h3>
+                    <p>Hadoop, Spark, cloud platforms, and capstone project development.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section id="tools">
+        <div class="section-header">
+            <div class="section-tag">// Tech Stack</div>
+            <h2 class="section-title">Tools & Technologies</h2>
+            <p class="section-subtitle">Proficient in industry-standard tools and platforms for data science and engineering.</p>
+        </div>
+        <div class="tools-container">
+            <div class="tools-category fade-in">
+                <h3>Programming & Libraries</h3>
+                <div class="tools-grid">
+                    <div class="tool-item"><span class="tool-icon">🐍</span><span>Python</span></div>
+                    <div class="tool-item"><span class="tool-icon">🐼</span><span>Pandas</span></div>
+                    <div class="tool-item"><span class="tool-icon">🔢</span><span>NumPy</span></div>
+                    <div class="tool-item"><span class="tool-icon">📊</span><span>Matplotlib</span></div>
+                    <div class="tool-item"><span class="tool-icon">🎨</span><span>Seaborn</span></div>
+                    <div class="tool-item"><span class="tool-icon">🤖</span><span>Scikit-learn</span></div>
+                </div>
+            </div>
+            <div class="tools-category fade-in">
+                <h3>Development Environment</h3>
+                <div class="tools-grid">
+                    <div class="tool-item"><span class="tool-icon">📓</span><span>Jupyter Notebook</span></div>
+                    <div class="tool-item"><span class="tool-icon">🐍</span><span>Anaconda</span></div>
+                    <div class="tool-item"><span class="tool-icon">💻</span><span>VS Code</span></div>
+                    <div class="tool-item"><span class="tool-icon">🔄</span><span>Git</span></div>
+                </div>
+            </div>
+            <div class="tools-category fade-in">
+                <h3>Cloud & Big Data</h3>
+                <div class="tools-grid">
+                    <div class="tool-item"><span class="tool-icon">☁️</span><span>AWS SageMaker</span></div>
+                    <div class="tool-item"><span class="tool-icon">🔵</span><span>Google Colab</span></div>
+                    <div class="tool-item"><span class="tool-icon">🔷</span><span>Azure ML</span></div>
+                    <div class="tool-item"><span class="tool-icon">⚡</span><span>Apache Spark</span></div>
+                    <div class="tool-item"><span class="tool-icon">🐘</span><span>Hadoop</span></div>
+                </div>
+            </div>
+            <div class="tools-category fade-in">
+                <h3>Professional Skills</h3>
+                <div class="tools-grid">
+                    <div class="tool-item"><span class="tool-icon">💼</span><span>LinkedIn</span></div>
+                    <div class="tool-item"><span class="tool-icon">🎤</span><span>Presentation Skills</span></div>
+                    <div class="tool-item"><span class="tool-icon">📝</span><span>Technical Writing</span></div>
+                    <div class="tool-item"><span class="tool-icon">💡</span><span>Freelancing</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="contact-container">
+            <div class="section-tag">// Let's Connect</div>
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle">Interested in collaboration or have a project in mind? I'd love to hear from you.</p>
+            <div class="contact-links">
+                <a href="#" class="contact-link" title="LinkedIn">💼</a>
+                <a href="#" class="contact-link" title="GitHub">🐙</a>
+                <a href="#" class="contact-link" title="Email">📧</a>
+                <a href="#" class="contact-link" title="Kaggle">📊</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Data Science Portfolio. Built with <span>♥</span> using HTML, CSS & JavaScript</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem;">People's Information Technology Programme – Mehran University of Engineering and Technology</p>
+    </footer>
+
+    <script>
+        // Scroll Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(10, 10, 15, 0.95)';
+            } else {
+                nav.style.background = 'rgba(10, 10, 15, 0.8)';
+            }
+        });
+    </script>
+</body>
+</html>
